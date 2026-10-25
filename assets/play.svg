@@ -1,0 +1,311 @@
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 900 200" width="900" height="200">
+
+    <defs>
+      <!-- Border -->
+      <linearGradient id="gBorder" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#BF00FF"/>
+        <stop offset="50%" stop-color="#4c1d95"/>
+        <stop offset="100%" stop-color="#BF00FF"/>
+      </linearGradient>
+
+      <!-- Animated text -->
+      <linearGradient id="gTitle" gradientUnits="userSpaceOnUse"
+                      x1="340" y1="0" x2="640" y2="0"
+                      spreadMethod="repeat">
+        <stop offset="0%" stop-color="#F5D0FE"/>
+        <stop offset="33%" stop-color="#BF00FF"/>
+        <stop offset="66%" stop-color="#8B00FF"/>
+        <stop offset="100%" stop-color="#F5D0FE"/>
+        <animateTransform attributeName="gradientTransform"
+                          type="translate" from="0 0" to="300 0"
+                          dur="5s" repeatCount="indefinite"/>
+      </linearGradient>
+
+      <!-- Black hole gradients -->
+      <linearGradient id="bhDisk" gradientUnits="userSpaceOnUse"
+                      x1="-150" y1="0" x2="150" y2="0">
+        <stop offset="0%" stop-color="#6d28d9"/>
+        <stop offset="15%" stop-color="#BF00FF"/>
+        <stop offset="35%" stop-color="#fde68a"/>
+        <stop offset="50%" stop-color="#ffffff"/>
+        <stop offset="70%" stop-color="#BF00FF"/>
+        <stop offset="100%" stop-color="#4c1d95"/>
+      </linearGradient>
+
+      <linearGradient id="bhLens" gradientUnits="userSpaceOnUse"
+                      x1="-70" y1="0" x2="70" y2="0">
+        <stop offset="0%" stop-color="#BF00FF"/>
+        <stop offset="30%" stop-color="#fde68a"/>
+        <stop offset="50%" stop-color="#ffffff"/>
+        <stop offset="75%" stop-color="#F0ABFC"/>
+        <stop offset="100%" stop-color="#8B00FF"/>
+      </linearGradient>
+
+      <linearGradient id="bhJetUp" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#BF00FF" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#E9D5FF" stop-opacity="0.85"/>
+      </linearGradient>
+
+      <linearGradient id="bhJetDown" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E9D5FF" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#BF00FF" stop-opacity="0"/>
+      </linearGradient>
+
+      <linearGradient id="bhFlare" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="50%" stop-color="#ffffff" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      </linearGradient>
+
+      <radialGradient id="bhGlow">
+        <stop offset="35%" stop-color="#BF00FF" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#8B00FF" stop-opacity="0"/>
+      </radialGradient>
+
+      <radialGradient id="bhHot">
+        <stop offset="25%" stop-color="#fff3c4" stop-opacity="0.75"/>
+        <stop offset="60%" stop-color="#fde68a" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
+      </radialGradient>
+
+      <!-- Filters -->
+      <filter id="cardBlur" x="-30%" y="-50%" width="160%" height="200%">
+        <feGaussianBlur stdDeviation="6"/>
+      </filter>
+
+      <filter id="bhBlur" x="-30%" y="-300%" width="160%" height="700%">
+        <feGaussianBlur stdDeviation="4"/>
+      </filter>
+
+      <filter id="bhSoft" x="-20%" y="-600%" width="140%" height="1300%">
+        <feGaussianBlur stdDeviation="1.5"/>
+      </filter>
+
+      <filter id="bhJetBlur" x="-400%" y="-10%" width="900%" height="120%">
+        <feGaussianBlur stdDeviation="2"/>
+      </filter>
+
+      <filter id="bhBloom" x="-30%" y="-150%" width="160%" height="400%">
+        <feGaussianBlur stdDeviation="7"/>
+      </filter>
+
+      <!-- Clipping -->
+      <clipPath id="cardClip">
+        <rect x="21" y="11" width="858" height="178" rx="17"/>
+      </clipPath>
+
+      <clipPath id="bhBack">
+        <rect x="-220" y="-220" width="440" height="221"/>
+      </clipPath>
+
+      <clipPath id="bhFront">
+        <rect x="-220" y="0" width="440" height="220"/>
+      </clipPath>
+
+      <!-- Star -->
+      <path id="spark"
+            d="M0 -7 L1.6 -1.6 L7 0 L1.6 1.6
+              L0 7 L-1.6 1.6 L-7 0 L-1.6 -1.6 Z"/>
+
+      <!-- Accretion disk -->
+      <g id="bhDiskShape" fill="none">
+        <ellipse rx="140" ry="26" stroke="url(#bhDisk)"
+                stroke-width="12" opacity="0.55"
+                filter="url(#bhBlur)"/>
+
+        <ellipse rx="120" ry="22" stroke="url(#bhDisk)"
+                stroke-width="5" opacity="0.9"/>
+
+        <ellipse rx="100" ry="18" stroke="url(#bhDisk)"
+                stroke-width="3"/>
+
+        <ellipse rx="80" ry="14" stroke="#FFF7D6"
+                stroke-width="2" opacity="0.9"/>
+
+        <!-- Orbiting particles -->
+        <ellipse rx="130" ry="24" stroke="#F0ABFC"
+                stroke-width="2" stroke-dasharray="1 18"
+                stroke-linecap="round">
+          <animate attributeName="stroke-dashoffset"
+                  from="0" to="-190" dur="9s"
+                  repeatCount="indefinite"/>
+        </ellipse>
+
+        <ellipse rx="110" ry="20" stroke="#FFF7D6"
+                stroke-width="2" stroke-dasharray="1 14"
+                stroke-linecap="round">
+          <animate attributeName="stroke-dashoffset"
+                  from="0" to="-150" dur="6s"
+                  repeatCount="indefinite"/>
+        </ellipse>
+
+        <ellipse rx="90" ry="16" stroke="#ffffff"
+                stroke-width="2" stroke-dasharray="1 9"
+                stroke-linecap="round">
+          <animate attributeName="stroke-dashoffset"
+                  from="0" to="-100" dur="4s"
+                  repeatCount="indefinite"/>
+        </ellipse>
+
+        <!-- Orbiting orb -->
+        <g>
+          <animateMotion
+            path="M 160 0 A 160 30 0 1 1 -160 0
+                  A 160 30 0 1 1 160 0"
+            dur="8s" repeatCount="indefinite"/>
+          <circle r="7" fill="#fde68a" opacity="0.35"
+                  filter="url(#bhSoft)"/>
+          <circle r="2.8" fill="#FFF7D6"/>
+        </g>
+      </g>
+    </defs>
+
+    <!-- Card -->
+    <rect x="20" y="10" width="860" height="180" rx="18"
+          fill="none" stroke="#BF00FF" stroke-width="4"
+          opacity="0.3" filter="url(#cardBlur)"/>
+
+    <rect x="20" y="10" width="860" height="180" rx="18"
+          fill="#12081f" stroke="url(#gBorder)"
+          stroke-width="1.5"/>
+
+    <!-- Black hole -->
+    <g clip-path="url(#cardClip)">
+      <circle cx="170" cy="100" r="90" fill="url(#bhGlow)"/>
+      <circle cx="170" cy="100" r="60" fill="url(#bhHot)"/>
+
+      <g transform="translate(170 100) rotate(-14) scale(0.55)">
+
+        <!-- Relativistic jets -->
+        <rect x="-2.5" y="-142" width="5" height="100"
+              fill="url(#bhJetUp)" filter="url(#bhJetBlur)">
+          <animate attributeName="opacity"
+                  values="0.5;1;0.5" dur="3s"
+                  repeatCount="indefinite"/>
+        </rect>
+
+        <rect x="-2.5" y="42" width="5" height="100"
+              fill="url(#bhJetDown)" filter="url(#bhJetBlur)">
+          <animate attributeName="opacity"
+                  values="1;0.5;1" dur="3s"
+                  repeatCount="indefinite"/>
+        </rect>
+
+        <!-- Disk bloom -->
+        <use xlink:href="#bhDiskShape"
+            filter="url(#bhBloom)" opacity="0.8"/>
+
+        <!-- Rear accretion disk -->
+        <use xlink:href="#bhDiskShape"
+            clip-path="url(#bhBack)"/>
+
+        <!-- Gravitational lensing -->
+        <path d="M -66 -2 A 66 52 0 0 1 66 -2"
+              fill="none" stroke="url(#bhLens)"
+              stroke-width="12" opacity="0.6"
+              filter="url(#bhBlur)"/>
+
+        <path d="M -66 -2 A 66 52 0 0 1 66 -2"
+              fill="none" stroke="url(#bhLens)"
+              stroke-width="4"/>
+
+        <!-- Photon ring -->
+        <circle r="45" fill="none" stroke="url(#bhDisk)"
+                stroke-width="10" opacity="0.5"
+                filter="url(#bhBlur)"/>
+
+        <circle r="45" fill="none" stroke="url(#bhDisk)"
+                stroke-width="4" opacity="0.9"/>
+
+        <!-- Event horizon -->
+        <circle r="40" fill="#000000"/>
+
+        <circle r="41" fill="none" stroke="#fde68a"
+                stroke-width="4" opacity="0.7"
+                filter="url(#bhSoft)"/>
+
+        <circle r="41" fill="none" stroke="#FFF7D6"
+                stroke-width="1.2"/>
+
+        <!-- Lower gravitational lens -->
+        <path d="M -64 2 A 64 50 0 0 0 64 2"
+              fill="none" stroke="url(#bhLens)"
+              stroke-width="3" opacity="0.8"/>
+
+        <!-- Front accretion disk -->
+        <use xlink:href="#bhDiskShape"
+            clip-path="url(#bhFront)"/>
+
+        <!-- Horizontal flare -->
+        <rect x="-260" y="-0.8" width="520" height="1.6"
+              fill="url(#bhFlare)" filter="url(#bhSoft)">
+          <animate attributeName="opacity"
+                  values="0.4;1;0.4" dur="4s"
+                  repeatCount="indefinite"/>
+        </rect>
+      </g>
+    </g>
+
+    <!-- Stars -->
+    <use xlink:href="#spark" x="60" y="48" fill="#fde68a">
+      <animate attributeName="opacity"
+              values="0.2;1;0.2" dur="2.6s"
+              repeatCount="indefinite"/>
+    </use>
+
+    <use xlink:href="#spark" x="285" y="160" fill="#F0ABFC">
+      <animate attributeName="opacity"
+              values="1;0.2;1" dur="3.2s"
+              repeatCount="indefinite"/>
+    </use>
+
+    <use xlink:href="#spark" x="295" y="45" fill="#fde68a">
+      <animate attributeName="opacity"
+              values="0.3;1;0.3" dur="3.8s"
+              repeatCount="indefinite"/>
+    </use>
+
+    <!-- Title -->
+    <text x="340" y="75"
+          font-family="Courier New, monospace"
+          font-size="34" font-weight="bold"
+          letter-spacing="3" fill="url(#gTitle)">
+      VOID RUNNER
+    </text>
+
+    <!-- Description -->
+    <text x="340" y="105"
+          font-family="Courier New, monospace"
+          font-size="15" fill="#C4B5FD">
+      Kumpulkan bintang. Hindari event horizon.
+    </text>
+
+    <text x="340" y="125"
+          font-family="Courier New, monospace"
+          font-size="15" fill="#A78BFA">
+      Tahan klik / sentuh untuk terbang.
+    </text>
+
+    <!-- Play button -->
+    <rect x="340" y="140" width="250" height="34" rx="17"
+          fill="#BF00FF" fill-opacity="0.15"
+          stroke="#BF00FF" stroke-width="2">
+      <animate attributeName="stroke-opacity"
+              values="0.5;1;0.5" dur="2s"
+              repeatCount="indefinite"/>
+    </rect>
+
+    <polygon points="362,149 362,165 375,157"
+            fill="#E9D5FF"/>
+
+    <text x="388" y="162"
+          font-family="Courier New, monospace"
+          font-size="14" font-weight="bold"
+          fill="#E9D5FF">
+      MAINKAN SEKARANG
+    </text>
+
+  </svg>

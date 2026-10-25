@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 260" width="900" height="260">
+  <defs>
+    <!-- Latar dan cahaya -->
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1a0033"/>
+      <stop offset="100%" stop-color="#0B0612"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="35%" stop-color="#BF00FF" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#8B00FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowHot" cx="50%" cy="50%" r="50%">
+      <stop offset="30%" stop-color="#fde68a" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Filter blur -->
+    <filter id="fBlur" x="-30%" y="-300%" width="160%" height="700%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="fSoft" x="-20%" y="-600%" width="140%" height="1300%"><feGaussianBlur stdDeviation="1.5"/></filter>
+    <filter id="fJet" x="-400%" y="-10%" width="900%" height="120%"><feGaussianBlur stdDeviation="2"/></filter>
+    <filter id="fNebula" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="18"/></filter>
+
+    <!-- Gradient disk: kiri lebih terang (efek Doppler) -->
+    <linearGradient id="gDisk" gradientUnits="userSpaceOnUse" x1="-150" y1="0" x2="150" y2="0">
+      <stop offset="0%"   stop-color="#6d28d9"/>
+      <stop offset="15%"  stop-color="#BF00FF"/>
+      <stop offset="35%"  stop-color="#fde68a"/>
+      <stop offset="50%"  stop-color="#ffffff"/>
+      <stop offset="70%"  stop-color="#BF00FF"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+
+    <!-- Gradient jet dan flare -->
+    <linearGradient id="gJetUp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#BF00FF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#E9D5FF" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="gJetDown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E9D5FF" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#BF00FF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gFlare" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Potongan setengah atas (belakang) dan setengah bawah (depan) -->
+    <clipPath id="cBack"><rect x="-220" y="-220" width="440" height="221"/></clipPath>
+    <clipPath id="cFront"><rect x="-220" y="0" width="440" height="220"/></clipPath>
+
+    <!-- Bentuk kilau bintang empat sudut -->
+    <path id="spark" d="M0 -7 L1.6 -1.6 L7 0 L1.6 1.6 L0 7 L-1.6 1.6 L-7 0 L-1.6 -1.6 Z"/>
+
+    <!-- Disk akretion: dibuat sekali, dipakai dua kali (belakang dan depan) -->
+    <g id="disk" fill="none">
+      <ellipse rx="140" ry="26" stroke="url(#gDisk)" stroke-width="12" opacity="0.55" filter="url(#fBlur)"/>
+      <ellipse rx="120" ry="22" stroke="url(#gDisk)" stroke-width="5" opacity="0.9"/>
+      <ellipse rx="100" ry="18" stroke="url(#gDisk)" stroke-width="3"/>
+      <ellipse rx="80"  ry="14" stroke="#FFF7D6" stroke-width="2" opacity="0.9"/>
+
+      <!-- Partikel debu berputar -->
+      <ellipse rx="130" ry="24" stroke="#F0ABFC" stroke-width="2" stroke-dasharray="1 18" stroke-linecap="round" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" from="0" to="-190" dur="9s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse rx="110" ry="20" stroke="#FFF7D6" stroke-width="2" stroke-dasharray="1 14" stroke-linecap="round" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" from="0" to="-150" dur="6s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse rx="90" ry="16" stroke="#ffffff" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="4s" repeatCount="indefinite"/>
+      </ellipse>
+
+      <!-- Planet kecil yang mengorbit -->
+      <g>
+        <animateMotion path="M 160 0 A 160 30 0 1 1 -160 0 A 160 30 0 1 1 160 0" dur="8s" repeatCount="indefinite"/>
+        <circle r="7" fill="#fde68a" opacity="0.35" filter="url(#fSoft)"/>
+        <circle r="2.8" fill="#FFF7D6"/>
+      </g>
+    </g>
+    <!-- Gradient teks -->
+    <linearGradient id="gTitle" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="420" y2="0" spreadMethod="repeat">
+      <stop offset="0%"   stop-color="#F5D0FE"/>
+      <stop offset="33%"  stop-color="#BF00FF"/>
+      <stop offset="66%"  stop-color="#8B00FF"/>
+      <stop offset="100%" stop-color="#F5D0FE"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="370 0" dur="6s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <linearGradient id="gInfo" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="420" y2="0" spreadMethod="repeat">
+      <stop offset="0%"   stop-color="#BF00FF"/>
+      <stop offset="50%"  stop-color="#F0ABFC"/>
+      <stop offset="100%" stop-color="#BF00FF"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="370 0" dur="5s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <linearGradient id="gGold" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="420" y2="0" spreadMethod="repeat">
+      <stop offset="0%"   stop-color="#dcd916"/>
+      <stop offset="50%"  stop-color="#e1fa00"/>
+      <stop offset="100%" stop-color="#dcd916"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="370 0" dur="7s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <linearGradient id="gLearn" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="420" y2="0" spreadMethod="repeat">
+      <stop offset="0%"   stop-color="#9D00FF"/>
+      <stop offset="50%"  stop-color="#E9D5FF"/>
+      <stop offset="100%" stop-color="#9D00FF"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="370 0" dur="4s" repeatCount="indefinite"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Latar belakang -->
+  <rect width="900" height="260" fill="url(#bg)"/>
+
+  <!-- 2. Awan nebula -->
+  <ellipse cx="640" cy="170" rx="160" ry="60" fill="#6d28d9" opacity="0.28" filter="url(#fNebula)" transform="rotate(-20 640 170)"/>
+  <ellipse cx="800" cy="90"  rx="130" ry="50" fill="#BF00FF" opacity="0.22" filter="url(#fNebula)" transform="rotate(15 800 90)"/>
+  <ellipse cx="730" cy="205" rx="120" ry="40" fill="#f472b6" opacity="0.14" filter="url(#fNebula)"/>
+
+  <!-- 3. Bintang -->
+  <g fill="#E9D5FF">
+    <circle cx="60" cy="40" r="1.5"><animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite"/></circle>
+    <circle cx="200" cy="225" r="1.2"><animate attributeName="opacity" values="1;0.2;1" dur="2.4s" repeatCount="indefinite"/></circle>
+    <circle cx="340" cy="30" r="1.8"><animate attributeName="opacity" values="0.3;1;0.3" dur="3.6s" repeatCount="indefinite"/></circle>
+    <circle cx="470" cy="238" r="1.3"><animate attributeName="opacity" values="1;0.2;1" dur="2.8s" repeatCount="indefinite"/></circle>
+    <circle cx="520" cy="60" r="1.6"><animate attributeName="opacity" values="0.2;1;0.2" dur="4s" repeatCount="indefinite"/></circle>
+    <circle cx="860" cy="30" r="1.4"><animate attributeName="opacity" values="0.4;1;0.4" dur="3.2s" repeatCount="indefinite"/></circle>
+    <circle cx="880" cy="222" r="1.7"><animate attributeName="opacity" values="1;0.3;1" dur="2.6s" repeatCount="indefinite"/></circle>
+    <!-- bintang kecil statis -->
+    <circle cx="590" cy="30" r="0.8" opacity="0.6"/>
+    <circle cx="640" cy="240" r="0.9" opacity="0.5"/>
+    <circle cx="690" cy="20" r="0.7" opacity="0.6"/>
+    <circle cx="780" cy="245" r="0.8" opacity="0.5"/>
+    <circle cx="830" cy="150" r="0.9" opacity="0.6"/>
+    <circle cx="565" cy="200" r="0.7" opacity="0.5"/>
+    <circle cx="880" cy="110" r="0.8" opacity="0.6"/>
+    <circle cx="420" cy="140" r="0.7" opacity="0.4"/>
+  </g>
+
+  <!-- 4. Kilau bintang empat sudut -->
+  <g transform="translate(600 70)">
+    <use xlink:href="#spark" fill="#FFF7D6">
+      <animateTransform attributeName="transform" type="scale" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite"/>
+    </use>
+  </g>
+  <g transform="translate(830 205)">
+    <use xlink:href="#spark" fill="#F0ABFC">
+      <animateTransform attributeName="transform" type="scale" values="0.3;0.9;0.3" dur="4s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="4s" begin="1s" repeatCount="indefinite"/>
+    </use>
+  </g>
+  <g transform="translate(570 190)">
+    <use xlink:href="#spark" fill="#ffffff">
+      <animateTransform attributeName="transform" type="scale" values="0.2;0.8;0.2" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+    </use>
+  </g>
+  <g transform="translate(850 100)">
+    <use xlink:href="#spark" fill="#fde68a">
+      <animateTransform attributeName="transform" type="scale" values="0.3;1;0.3" dur="2.8s" begin="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="2.8s" begin="2s" repeatCount="indefinite"/>
+    </use>
+  </g>
+
+  <!-- 5. Bintang yang tersedot ke black hole -->
+  <circle r="2.5" fill="#F5D0FE">
+    <animateMotion path="M 520 40 Q 660 50 720 130" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;0" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="2" fill="#E9D5FF">
+    <animateMotion path="M 560 230 Q 680 220 720 130" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;0" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="2.2" fill="#fde68a">
+    <animateMotion path="M 880 40 Q 800 50 720 130" dur="4.5s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;0" dur="4.5s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="1.8" fill="#fde68a">
+    <animateMotion path="M 860 240 Q 780 220 720 130" dur="5.5s" begin="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;0" dur="5.5s" begin="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- 6. Cahaya di sekitar black hole -->
+  <defs>
+    <radialGradient id="glowHot2" cx="50%" cy="50%" r="50%">
+      <stop offset="25%"  stop-color="#fff3c4" stop-opacity="0.75"/>
+      <stop offset="60%"  stop-color="#fde68a" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gLens" gradientUnits="userSpaceOnUse" x1="-70" y1="0" x2="70" y2="0">
+      <stop offset="0%"   stop-color="#BF00FF"/>
+      <stop offset="30%"  stop-color="#fde68a"/>
+      <stop offset="50%"  stop-color="#ffffff"/>
+      <stop offset="75%"  stop-color="#F0ABFC"/>
+      <stop offset="100%" stop-color="#8B00FF"/>
+    </linearGradient>
+    <filter id="fBloom" x="-30%" y="-150%" width="160%" height="400%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+  </defs>
+  <circle cx="690" cy="132" r="190" fill="url(#glow)"/>
+  <circle cx="690" cy="132" r="110" fill="url(#glowHot2)"/>
+
+  <!-- 7. Black hole (lebih besar, miring 14 derajat) -->
+  <g transform="translate(690 132) rotate(-14) scale(1.3)">
+    <!-- Jet atas dan bawah -->
+    <rect x="-2.5" y="-142" width="5" height="100" fill="url(#gJetUp)" filter="url(#fJet)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="-2.5" y="42" width="5" height="100" fill="url(#gJetDown)" filter="url(#fJet)">
+      <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Bloom: salinan disk yang diburamkan supaya cahayanya meluber -->
+    <use xlink:href="#disk" filter="url(#fBloom)" opacity="0.8"/>
+
+    <!-- Disk bagian belakang -->
+    <use xlink:href="#disk" clip-path="url(#cBack)"/>
+
+    <!-- Lensa gravitasi: cahaya disk yang dibelokkan di atas lubang -->
+    <path d="M -66 -2 A 66 52 0 0 1 66 -2" fill="none" stroke="url(#gLens)"
+          stroke-width="12" opacity="0.6" filter="url(#fBlur)"/>
+    <path d="M -66 -2 A 66 52 0 0 1 66 -2" fill="none" stroke="url(#gLens)" stroke-width="4"/>
+
+    <!-- Halo lensa gravitasi -->
+    <circle r="45" fill="none" stroke="url(#gDisk)" stroke-width="10" opacity="0.5" filter="url(#fBlur)"/>
+    <circle r="45" fill="none" stroke="url(#gDisk)" stroke-width="4" opacity="0.9"/>
+
+    <!-- Event horizon -->
+    <circle r="40" fill="#000"/>
+    <circle r="41" fill="none" stroke="#fde68a" stroke-width="4" opacity="0.7" filter="url(#fSoft)"/>
+    <circle r="41" fill="none" stroke="#FFF7D6" stroke-width="1.2"/>
+
+    <!-- Lensa bagian bawah -->
+    <path d="M -64 2 A 64 50 0 0 0 64 2" fill="none" stroke="url(#gLens)" stroke-width="3" opacity="0.8"/>
+
+    <!-- Disk bagian depan (melintas di depan black hole) -->
+    <use xlink:href="#disk" clip-path="url(#cFront)"/>
+
+    <!-- Lens flare horizontal (lebih panjang) -->
+    <rect x="-260" y="-0.8" width="520" height="1.6" fill="url(#gFlare)" filter="url(#fSoft)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="4s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  <!-- 8. Teks dengan gradient animasi -->
+  <text x="50" y="140" font-family="Courier New, monospace" font-size="42" font-weight="bold" fill="url(#gTitle)">Diavalga Opera</text>
+  <!-- <text x="50" y="150" font-family="Courier New, monospace" font-size="18" fill="url(#gInfo)">Information Systems</text> -->
+  <!-- <text x="50" y="180" font-family="Courier New, monospace" font-size="18" fill="url(#gGold)">Universitas Negeri Semarang</text> -->
+  <text x="50" y="180" font-family="Courier New, monospace" font-size="18" fill="url(#gLearn)">Learning [ AI | Machine Learning ]</text>
+</svg>

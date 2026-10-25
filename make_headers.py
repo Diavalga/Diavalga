@@ -1,0 +1,71 @@
+import os
+
+# slug -> teks judul
+SECTIONS = {
+    "about":   "ABOUT ME",
+    "stack":   "TECH STACK",
+    "play":    "PLAY INSIDE THE VOID",
+    "stats":   "GITHUB STATISTICS",
+    "connect": "CONNECT WITH ME",
+    "footer":  "SEE YOU IN THE VOID",
+}
+
+TEMPLATE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 90" width="900" height="90">
+  <defs>
+    <!-- Gradient teks yang bergerak mengalir -->
+    <linearGradient id="gText" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="750" y2="0" spreadMethod="repeat">
+      <stop offset="0%"   stop-color="#E879F9"/>
+      <stop offset="33%"  stop-color="#BF00FF"/>
+      <stop offset="66%"  stop-color="#8B00FF"/>
+      <stop offset="100%" stop-color="#E879F9"/>
+      <animateTransform attributeName="gradientTransform" type="translate"
+                        from="0 0" to="600 0" dur="6s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <!-- Garis cahaya: pudar di kedua ujung -->
+    <linearGradient id="gLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#BF00FF" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#BF00FF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#BF00FF" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Titik cahaya yang berjalan di garis -->
+    <radialGradient id="gDot" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#E879F9" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="fGlow" x="-10%" y="-1000%" width="120%" height="2100%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Judul -->
+  <text x="450" y="46" text-anchor="middle" font-family="Courier New, monospace"
+        font-size="26" font-weight="bold" letter-spacing="6" fill="url(#gText)">__TITLE__</text>
+
+  <!-- Garis cahaya (lapisan berpendar + lapisan tajam) -->
+  <rect x="100" y="64" width="700" height="3" fill="url(#gLine)" filter="url(#fGlow)" opacity="0.8"/>
+  <rect x="100" y="65" width="700" height="1.2" fill="url(#gLine)"/>
+
+  <!-- Titik cahaya berjalan dari kiri ke kanan -->
+  <circle r="5" fill="url(#gDot)">
+    <animateMotion path="M 100 65.6 L 800 65.6" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Berlian di tengah garis -->
+  <rect x="-4" y="-4" width="8" height="8" fill="#0B0612" stroke="#E879F9" stroke-width="1.5"
+        transform="translate(450 65.6) rotate(45)">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+  </rect>
+</svg>
+"""
+
+os.makedirs("assets", exist_ok=True)
+
+for slug, title in SECTIONS.items():
+    path = f"assets/header-{slug}.svg"
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(TEMPLATE.replace("__TITLE__", title))
+    print("dibuat:", path)
